@@ -1,0 +1,44 @@
+.In_exItem {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid #282c34;
+    margin: 1% 1%;
+    border-radius: 50px;
+    font-size: 25px;
+    background: #fbfbfb;
+    width: 90%;
+}
+
+.Tag {
+  box-sizing: border-box;
+  margin: 0 8px 0 0;
+  color: #000000d9;
+  font-size: 20px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum";
+  display: inline-block;
+  height: auto;
+  padding: 0 7px;
+  line-height: 20px;
+  white-space: nowrap;
+  background: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  opacity: 1;
+  transition: all .3s;
+}
+
+.Blue {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+.Red {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
