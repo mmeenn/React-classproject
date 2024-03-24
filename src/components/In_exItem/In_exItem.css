@@ -7,7 +7,9 @@
     border-radius: 50px;
     font-size: 25px;
     background: #fbfbfb;
+    height: 65.2px;
     width: 90%;
+    float: right;
 }
 
 .Tag {
@@ -42,3 +44,54 @@
     background-color: #dc3545;
     border-color: #dc3545;
   }
+  .edit-btn {
+    margin: 8px 5px;
+    padding: 7px 12px;
+    background-color: black;
+    color: white;
+  }
+  .delete-btn {
+    margin: 8px 5px;
+    padding: 7px 12px;
+    background-color:#dc3545;
+  }
+.editIn_exItem{
+  display: flex;
+}
+.done-btn {
+    font-size: 15px;
+    background-color:black;
+    color: white;
+  }
+.edt-cancel-btn {
+  font-size: 15px;
+  background-color:black;
+  color: white;
+}
+
+.In_exInput label {
+  font-size: 20px;
+  font-weight:500;
+}
+
+.edit-select {
+  width: 15%;
+  height: 55%;
+  border: #282c34 3px solid;
+  border-radius: 10px;
+  background-color: firebrick;
+  font-size: 18px;
+  color: white;
+}
+
+.edit-amount {
+  width: 15%;
+  height: 55%;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  border-radius: 10px;
+  border: #282c34 3px solid;
+  text-align: center;
+}
+

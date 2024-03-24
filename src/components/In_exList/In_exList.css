@@ -1,7 +1,7 @@
 .selectdiv {
     position: sticky;
     float: right;
-    min-width: 600px;
+    min-width: 500px;
     margin: 10px;
 }
 
@@ -9,11 +9,8 @@
   display: grid;
 }
 .InExList {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  display: grid;
   margin: 10px;
+  
 }
 /* IE11 hide native button (thanks Matt!) */
 select::-ms-expand {
@@ -53,7 +50,7 @@ select::-ms-expand {
     float: right;
     margin: 5px 0px;
     padding: 0px 24px;
-    font-size: 16px;
+    font-size:20px;
     font: bold;
     line-height: 1.75;
     color:white;

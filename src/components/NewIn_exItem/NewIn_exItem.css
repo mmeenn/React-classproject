@@ -1,0 +1,55 @@
+.NewIn_excontainer {
+    width: 400px;
+}
+.In_exInput label {
+    font-size: 20px;
+    font-weight:500;
+}
+
+.In_exInput select {
+    margin: 5px 0 5px 0;
+    width: 100%;
+    padding: 16px 20px;
+    border: #282c34 3px solid;
+    border-radius: 10px;
+    background-color: firebrick;
+    font-size: 20px;
+    color: white;
+}
+
+.In_exInput input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 25px;
+    border-radius: 10px;
+    border: #282c34 3px solid;
+    text-align: center;
+}
+
+.In_exInput input[type=number]::-webkit-inner-spin-button {
+    height: 40px;
+  }
+
+hr {
+    width: 80%; margin: 15px 10% 15px 10%;
+    border-top: 3px solid black;
+  }
+
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.add-btn {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+}
+
+.cancel-btn {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+}

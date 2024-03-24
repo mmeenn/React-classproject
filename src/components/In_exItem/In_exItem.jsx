@@ -1,7 +1,9 @@
-import React,{useState} from "react";
+import React, { useContext, useState } from "react";
 import "./In_exItem.css";
+import { HandlerContext } from "../../context/handler-context";
 
 function In_exItem(props) {
+  const ctx = useContext(HandlerContext);
   const [isEdit, setIsEdit] = useState(false);
   const [curInEx, setCurInEx] = useState("");
   const [curCat, setCurCat] = useState("");
@@ -21,7 +23,7 @@ function In_exItem(props) {
       amount: curAmount,
       Payment: curPayment,
     };
-    props.editHandler(props.id, editValues);
+    ctx.editHandler(props.id, editValues);
     setIsEdit(false);
   };
 
@@ -47,6 +49,7 @@ function In_exItem(props) {
           <option value="Other">Other</option>
         </select>
         <input
+        className="edit-amount"
           type="number"
           min="1"
           max="1000000"
@@ -55,16 +58,17 @@ function In_exItem(props) {
           value={curAmount}
         />
         <select
+        className="edit-select"
           onChange={(e) => setCurPayment(e.target.value === "true")}
           value={curPayment}
         >
           <option value={true}>Cash</option>
           <option value={false}>Credit Card</option>
         </select>
-        <button onClick={onClickDone} className="btn btn-success">
+        <button onClick={onClickDone} className="done-btn">
           Done
         </button>
-        <button onClick={() => setIsEdit(false)} className="btn btn-primary">
+        <button onClick={() => setIsEdit(false)} className="edt-cancel-btn">
           Cancle
         </button>
       </div>
@@ -79,10 +83,13 @@ function In_exItem(props) {
       <div>{props.category}</div>
       <div>{props.amount}</div>
       <div>{props.Payment ? "Cash" : "Credit Card"}</div>
-      <button onClick={onClickEdit}>Edit</button>
+      <button className="edit-btn" onClick={onClickEdit}>
+        Edit
+      </button>
       <button
+        className="delete-btn"
         onClick={() => {
-          props.deleteHandler(props.id);
+          ctx.deleteHandler(props.id);
         }}
       >
         Delete

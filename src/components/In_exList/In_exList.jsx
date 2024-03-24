@@ -5,12 +5,12 @@ import "./In_exList.css";
 function In_exList(props) {
   const in_exList = props.in_exList;
   const [curCat, setCurCat] = useState("Food");
-  const fillterdCat = in_exList.filter((s) => s.category === curCat);
+  const filteredCat = in_exList.filter((s) => (s.category === curCat));
   return (
     <div className="grid-container">
       <div className="selectdiv">
         <label>
-          <select value={curCat} onChange={(e) => setCurCat(e.target.value)}>
+          <select value={curCat} onChange={(e) => (setCurCat(e.target.value))}>
             <option value="Food">Food</option>
             <option value="Travel">Travel</option>
             <option value="Cloth">Cloth</option>
@@ -19,10 +19,10 @@ function In_exList(props) {
         </label>
       </div>
       <div className="InExList">
-        {fillterdCat.length === 0 ? (
+        {filteredCat.length === 0 ? (
           <div>Not Found</div>
         ) : (
-          fillterdCat.map((e) => (
+          filteredCat.map((e) => (
             <In_exItem
               key={e.id}
               id={e.id}
@@ -30,8 +30,6 @@ function In_exList(props) {
               category={e.category}
               amount={e.amount}
               Payment={e.Payment}
-              deleteHandler={props.deleteHandler}
-              editHandler={props.editHandler}
             />
           ))
         )}

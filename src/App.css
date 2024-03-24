@@ -32,6 +32,7 @@
 
 .row {
   display: flex;
+  height: 600px;
 }
 
 .column1 {
@@ -39,6 +40,16 @@
 }
 .column2 {
   flex: 50%;
+}
+
+.column1 .NewIn_exItem {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #282c34 4px solid;
+  border-radius: 75px;
 }
 
 .column1 .add-button-container {
@@ -50,13 +61,16 @@
   margin: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items:center;
 }
 
 .column1 .add-button-container > button {
   height: 10%;
   width: 50%;
-  border-radius: 70px;
-  border: #282c34 3px solid;
+  border-radius: 24px;
+  border: #282c34 1px solid;
   font-size: 20px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
 }

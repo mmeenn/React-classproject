@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import './App.css'
-import In_exList from './components/In_exList/In_exList';
-import NewIn_exItem from './components/NewIn_exItem/NewIn_exItem';
+import { useEffect, useReducer, useState} from "react";
+import "./App.css";
+import In_exList from "./components/In_exList/In_exList";
+import NewIn_exItem from "./components/NewIn_exItem/NewIn_exItem";
+import { reducer } from "./reducers/ListChanged-reducer";
+import { HandlerContext } from "./context/handler-context";
 let lastId = 3;
 const INITIAL_INEXLIST = [
   {
@@ -9,64 +11,95 @@ const INITIAL_INEXLIST = [
     InEx: true,
     category: "Food",
     amount: 200,
-    Payment: true
+    Payment: true,
   },
   {
     id: 2,
     InEx: false,
     category: "Travel",
     amount: 1500,
-    Payment: false
+    Payment: false,
   },
   {
     id: 3,
     InEx: true,
     category: "Cloth",
     amount: 20000,
-    Payment: true
-  }
+    Payment: true,
+  },
 ];
+
 function App() {
-  const [inexList, setInexList] = useState(INITIAL_INEXLIST);
+  const [inexList, dispatch] = useReducer(reducer, {}, () => {
+    const localInex = localStorage.getItem("list");
+    if (localInex === null) {
+      return INITIAL_INEXLIST;
+    }
+    return JSON.parse(localInex);
+  });
+
+  const [isShow, setIsShow] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(inexList));
+  }, [inexList]);
+
   const addInexListHandler = (newInexData) => {
     const newInex = {
       ...newInexData,
       id: ++lastId,
     };
-    setInexList([newInex, ...inexList]);
+    dispatch({
+      type: "add_Inex",
+      newInex: newInex,
+    });
   };
-  const [isShow, setIsShow] = useState(false);
+
   const deleteHandler = (id) => {
-    const newInexList = inexList.filter((e)=> e.id !== id);
-    setInexList(newInexList);
-  }
+    dispatch({
+      type: "delete_Inex",
+      deleteId: id
+    })
+  };
 
   const editHandler = (id, inex) => {
-    //clone new list
-    const newInexList = [...inexList]
-    //find and update target student
-    const idx = inexList.findIndex((e) => e.id===id);
-    newInexList[idx] = {...inex}
-    //set state
-    setInexList(newInexList);
-  }
+    dispatch({
+      type: "editInex",
+      editId: id,
+      inex: inex
+    })
+  };
 
   return (
+    <HandlerContext.Provider value={{
+      addInexListHandler: addInexListHandler,
+      editHandler: editHandler,
+      deleteHandler: deleteHandler
+    }}>
     <div className="row">
       <div className="column1">
-      {isShow ? (
-        <NewIn_exItem setIsShow={setIsShow} onAddInex={addInexListHandler}/>
-      ) : (
-        <div className="add-button-container">
-          <button className="add-button" onClick={() => setIsShow(true)}>Add New Record</button>
-        </div>
-      )}
+        {isShow ? (
+          <div className="NewIn_exItem">
+            <NewIn_exItem
+              setIsShow={setIsShow}
+            />
+          </div>
+        ) : (
+          <div className="add-button-container">
+            <button className="add-button" onClick={() => setIsShow(true)}>
+              Add New Record
+            </button>
+          </div>
+        )}
       </div>
       <div className="column2">
-      <In_exList in_exList = {inexList} deleteHandler={deleteHandler} editHandler={editHandler}/>
+        <In_exList
+          in_exList={inexList}
+        />
       </div>
     </div>
-  )
+    </HandlerContext.Provider>
+  );
 }
 
-export default App
+export default App;
